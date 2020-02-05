@@ -1,0 +1,22 @@
+apply plugin: 'maven'
+apply plugin: 'groovy'
+
+dependencies {
+    implementation 'com.android.tools.build:gradle:3.3.2'
+    implementation gradleApi()
+    implementation localGroovy()
+
+
+}
+repositories {
+    mavenLocal()
+}
+uploadArchives {
+    repositories.mavenDeployer {
+        pom.groupId = 'com.bigman.clickInject'
+        pom.artifactId = 'onclickplugin'
+        pom.version = '1.0.0'
+        //发布到本地仓库
+        repository(url: uri('../repo'))
+    }
+}
