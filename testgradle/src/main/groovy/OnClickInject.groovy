@@ -31,7 +31,7 @@ class OnClickInject extends Transform implements Plugin<Project> {
    Project project
     void apply(Project project) {
         System.out.println '========================'
-        System.out.println '我是测试gradle TestPlugin'
+        System.out.println 'I am android click inject plugin'
         System.out.println '========================'
         def android = project.extensions.getByType(AppExtension)
         project.extensions.add("OnClickExtension", OnClickExtension)
@@ -88,7 +88,7 @@ class OnClickInject extends Transform implements Plugin<Project> {
         }
         def cost = (System.currentTimeMillis() - startTime) / 1000
         System.out.println '--------------- LifeTestPlugin visit end --------------- '
-        System.out.println "LifeTestPlugin cost ： $cost s"
+        System.out.println "BigmanClickPlugin cost ： $cost s"
     }
     /**
      * 处理文件目录下的class文件

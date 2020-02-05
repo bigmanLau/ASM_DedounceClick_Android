@@ -16,21 +16,21 @@ public class OnClickClassVisitor extends ClassVisitor implements Opcodes {
 
     @Override
     public void visit(int version, int access, String name, String signature, String superName, String[] interfaces) {
-        System.out.println("OnClickClassVisitor:visit----->started:"+name);
+        System.out.println("BigmanClickPlugin:visit----->started:"+name);
         this.mClassName=name;
         super.visit(version, access, name, signature, superName, interfaces);
     }
 
     @Override
     public MethodVisitor visitMethod(int access, String name, String desc, String signature, String[] exceptions) {
-        System.out.println("OnClickClassVisitor:visitMethod :"+name);
+        System.out.println("BigmanClickPlugin:visitMethod :"+name);
         MethodVisitor mv=cv.visitMethod(access,name,desc,signature,exceptions);
-        System.out.println("OnClickClassVisitor:visitMethod ---------->started:"+this.mClassName);
+        System.out.println("BigmanClickPlugin:visitMethod ---------->started:"+this.mClassName);
         if(Utils.isViewOnclickMethod(access,name,desc)){
-            System.out.println("OnClickClassVisitor : change method ---->"+name);
+            System.out.println("BigmanClickPlugin : change method ---->"+name);
             return new OnClickMethodVisitor(mv,this.project);
         }else if(Utils.isListViewOnItemOnclickMethod(access,name,desc)){
-            System.out.println("OnClickClassVisitor : change method ---->"+name);
+            System.out.println("BigmanClickPlugin : change method ---->"+name);
             return  new OnClickMethodVisitor(mv,this.project);
         }
         return mv;

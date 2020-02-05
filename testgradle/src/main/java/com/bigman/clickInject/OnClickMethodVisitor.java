@@ -20,10 +20,10 @@ public class OnClickMethodVisitor extends MethodVisitor {
 
         OnClickExtension extension = (OnClickExtension) this.project.getExtensions().findByName("OnClickExtension");
         if(!TextUtils.isEmpty(extension.checkClass)){
-            System.out.println("[checkClass]"+extension.checkClass.equals("com/example/debounceCheck/CheckClick"));
+            System.out.println("[BigmanClickPlugin]"+extension.checkClass.equals("com/example/debounceCheck/CheckClick"));
             mv.visitVarInsn(ALOAD, 1);
             mv.visitMethodInsn(INVOKEVIRTUAL, "android/view/View", "getId", "()I", false);
-            mv.visitMethodInsn(INVOKESTATIC, "com/example/debounceCheck/CheckClick", "checkIsClicked", "(I)Z", false);
+            mv.visitMethodInsn(INVOKESTATIC, extension.checkClass, "checkIsClicked", "(I)Z", false);
             Label l1 = new Label();
             mv.visitJumpInsn(IFEQ, l1);
             Label l2 = new Label();
