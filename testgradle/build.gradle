@@ -1,45 +1,51 @@
 
 //本地配置clickInject------------------------
-apply plugin: 'maven'
-apply plugin: 'groovy'
-
-dependencies {
-    implementation 'com.android.tools.build:gradle:3.3.2'
-    implementation gradleApi()
-    implementation localGroovy()
-
-
-}
-repositories {
-    mavenLocal()
-}
-uploadArchives {
-    repositories.mavenDeployer {
-        pom.groupId = 'com.bigman.clickInject'
-        pom.artifactId = 'onclick'
-        pom.version = '1.0.1'
-        //发布到本地仓库
-        repository(url: uri('../repo'))
-    }
-}
-//本地配置clickInject------------------------
-
-//发布网络使用下面配置--------------
-//
 //apply plugin: 'maven'
 //apply plugin: 'groovy'
-////apply plugin: "com.gradle.plugin-publish"
 //
 //dependencies {
 //    implementation 'com.android.tools.build:gradle:3.3.2'
 //    implementation gradleApi()
 //    implementation localGroovy()
-//}
 //
-//repositories {
-//    mavenCentral()
-//    jcenter()
+//
 //}
+//repositories {
+//    mavenLocal()
+//}
+//uploadArchives {
+//    repositories.mavenDeployer {
+//        pom.groupId = 'com.bigman.clickInject'
+//        pom.artifactId = 'onclick'
+//        pom.version = '1.0.0'
+//        //发布到本地仓库
+//        repository(url: uri('../repo'))
+//    }
+//}
+//本地配置clickInject------------------------
+
+//发布网络使用下面配置--------------
+
+
+apply plugin: 'groovy'
+
+apply plugin: 'maven'
+dependencies {
+    implementation 'com.android.tools.build:gradle:3.3.2'
+    implementation gradleApi()
+    implementation localGroovy()
+}
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+
+
+group 'com.github.cyc'
+version '0.0.1'
+
 //
 //buildscript {
 //    repositories {
@@ -54,7 +60,7 @@ uploadArchives {
 //
 //apply plugin: "com.gradle.plugin-publish"
 //version = "1.0.2"            // 插件的版本号
-//group = "com.bigman"    // 插件的组名
+//
 //
 //pluginBundle {
 //    website = 'https://github.com/bigmanLau/ASM_DedounceClick_Android/repo/'
