@@ -1,7 +1,8 @@
-# ASM_DedounceClick_Android
- 利用asm切入项目,实现全局点击事件防止点击抖动即二次点击或多次点击
 [简书地址]((https://www.jianshu.com/p/3f6e7dc06b23)
 [GITHUB地址](https://github.com/bigmanLau/ASM_DedounceClick_Android)
+[使用demo](https://github.com/bigmanLau/ASM_DedounceClick_Android_Demo)
+该项目已开源，可以拉到文章底部查看使用方法。
+
 
 ##### 公司背景：
 深圳我们在线教育有限公司
@@ -142,12 +143,39 @@ public class OnClickMethodVisitor extends MethodVisitor {
 1.在项目的build.gradle配置如下
 ![image.png](https://upload-images.jianshu.io/upload_images/12262980-827a406a982156e6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 2.在app模块的build.gradle配置如下
-![image.png](https://upload-images.jianshu.io/upload_images/12262980-2fc3dfc38e288f21.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![image.png](https://upload-images.jianshu.io/upload_images/12262980-2c35c08aabd9bb3c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+第一个参数是你自己自定义的点击拦截类 第二个是指定要处理的包名 节省时间
+
 
 ######4.运行效果图
 ![image.png](https://upload-images.jianshu.io/upload_images/12262980-3864b2ecb6ecc0de.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ![image.png](https://upload-images.jianshu.io/upload_images/12262980-514802220ab95142.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+######5.使用方法
+
+### 项目个目录的build.gradle引入下面代码
+
+```
+buildscript {
+  repositories {
+    maven {
+      url "https://plugins.gradle.org/m2/"
+    }
+  }
+  dependencies {
+    classpath "gradle.plugin.com.bigman:testgradle:1.0.2"
+  }
+}
+```
+然后在你要使用的模块比如app模块使用此插件
+```
+apply plugin: "com.bigman.clickInject"
+OnClickExtension{
+    checkClass ="com/example/debounceCheck/CheckClick"
+}
+```
+这里的`com/example/debounceCheck/CheckClick`就是你自定义的检测点击的方法，可以直接参考demo里的代码
 
 
 
