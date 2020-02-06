@@ -1,7 +1,8 @@
 package com.bigman.clickInject;
 
-import org.apache.http.util.TextUtils;
+
 import org.gradle.api.Project;
+
 import org.objectweb.asm.Label;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
@@ -11,7 +12,7 @@ import static org.objectweb.asm.Opcodes.*;
 public class OnClickMethodVisitor extends MethodVisitor {
     private  Project project;
     public OnClickMethodVisitor(MethodVisitor mv, Project project) {
-        super(Opcodes.ASM6,mv);
+        super(ASM5,mv);
         this.project=project;
     }
     @Override
@@ -19,7 +20,7 @@ public class OnClickMethodVisitor extends MethodVisitor {
         super.visitCode();
 
         OnClickExtension extension = (OnClickExtension) this.project.getExtensions().findByName("OnClickExtension");
-        if(!TextUtils.isEmpty(extension.checkClass)){
+        if(extension.checkClass!=null&&!extension.checkClass.equals("")){
             System.out.println("[BigmanClickPlugin]"+extension.checkClass.equals("com/example/debounceCheck/CheckClick"));
             mv.visitVarInsn(ALOAD, 1);
             mv.visitMethodInsn(INVOKEVIRTUAL, "android/view/View", "getId", "()I", false);

@@ -4,7 +4,7 @@
 //apply plugin: 'groovy'
 //
 //dependencies {
-//    implementation 'com.android.tools.build:gradle:3.3.2'
+//    implementation 'com.android.tools.build:gradle:3.0.0'
 //    implementation gradleApi()
 //    implementation localGroovy()
 //
@@ -25,13 +25,13 @@
 //本地配置clickInject------------------------
 
 //发布网络使用下面配置--------------
-
-
-apply plugin: 'groovy'
-
+//
 apply plugin: 'maven'
+apply plugin: 'groovy'
+//apply plugin: "com.gradle.plugin-publish"
+
 dependencies {
-    implementation 'com.android.tools.build:gradle:3.3.2'
+    implementation 'com.android.tools.build:gradle:3.0.0'
     implementation gradleApi()
     implementation localGroovy()
 }
@@ -41,38 +41,35 @@ repositories {
     jcenter()
 }
 
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "com.gradle.publish:plugin-publish-plugin:0.10.1"
+    }
+}
 
+apply plugin: "com.gradle.plugin-publish"
+version = "1.0.5"            // 插件的版本号
+group = "com.bigman"    // 插件的组名
 
-group 'com.github.cyc'
-version '0.0.1'
+pluginBundle {
+//    website = 'http://www.gradle.org/'
+//    vcsUrl = 'https://github.com/gradle/gradle'
+    website = 'https://github.com/bigmanLau/ASM_DedounceClick_Android'
+    vcsUrl = 'https://github.com/bigmanLau/ASM_DedounceClick_Android'
+    description = 'A library to  prevent debounce-click for android.'       // 插件的描述
+    tags = ['asm', 'android','debounce','onclick']  //插件的tag。可以通过这个在插件门户上搜索
 
-//
-//buildscript {
-//    repositories {
-//        maven {
-//            url "https://plugins.gradle.org/m2/"
-//        }
-//    }
-//    dependencies {
-//        classpath "com.gradle.publish:plugin-publish-plugin:0.9.10"
-//    }
-//}
-//
-//apply plugin: "com.gradle.plugin-publish"
-//version = "1.0.2"            // 插件的版本号
-//
-//
-//pluginBundle {
-//    website = 'https://github.com/bigmanLau/ASM_DedounceClick_Android/repo/'
-//    vcsUrl = 'https://github.com/bigmanLau/ASM_DedounceClick_Android/repo/'
-//    description = 'A library to  prevent debounce-click for android.'       // 插件的描述
-//    tags = ['asm', 'android','debounce','onclick']  //插件的tag。可以通过这个在插件门户上搜索
-//
-//    plugins {
-//        greetingsPlugin {
-//            id = 'com.bigman.clickInject'   //插件的id，到时候apply的插件id
-//            displayName = 'onclick'
-//        }
-//    }
-//}
+    plugins {
+        greetingsPlugin {
+            id = 'com.bigman.clickInject'   //插件的id，到时候apply的插件id
+            displayName = 'onclick'
+
+        }
+    }
+}
 //发布网络使用下面配置--------------

@@ -10,7 +10,7 @@ public class OnClickClassVisitor extends ClassVisitor implements Opcodes {
     private Project project;
 
     public OnClickClassVisitor(ClassVisitor  mv, Project project) {
-        super(Opcodes.ASM6,mv);
+        super(Opcodes.ASM5,mv);
         this.project=project;
     }
 
