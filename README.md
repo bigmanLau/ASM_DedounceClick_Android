@@ -164,7 +164,7 @@ buildscript {
     }
   }
   dependencies {
-    classpath "gradle.plugin.com.bigman:testgradle:1.0.2"
+    classpath "gradle.plugin.com.bigman:testgradle:1.0.7"
   }
 }
 ```
